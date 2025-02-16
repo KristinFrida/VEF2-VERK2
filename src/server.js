@@ -1,12 +1,16 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { router } from './routes.js';
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-const viewsPath = new URL('./views', import.meta.url).pathname;
-app.set('views', viewsPath);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/', router);
