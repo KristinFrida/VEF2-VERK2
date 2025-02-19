@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS public.svor (
   id SERIAL PRIMARY KEY,
   svor_text TEXT NOT NULL,
   spurning_id INTEGER NOT NULL REFERENCES public.spurningar(id),
-  is_correct BOOLEAN NOT NULL DEFAULT FALSE
+  correct BOOLEAN NOT NULL DEFAULT FALSE
 );
