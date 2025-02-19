@@ -1,0 +1,169 @@
+:root {
+  --font-base-size: 16px;
+  --font-base-family: arial, sans-serif;
+  --max-width: 50rem;
+  --spacing: 1rem;
+  --spacing-small: calc(var(--spacing) / 2);
+  --spacing-large: calc(var(--spacing) * 2);
+  --color-border: #a3b18a;
+  --color-primary: #588157;
+  --color-primary-dark: #3a5a40;
+  --color-text: #212529;
+  --color-background: #dad7cd;
+  --color-white: #fff;
+  --color-gray-light: #a3b18a;
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+
+  /* Takkar */
+  --button-padding: 0.5rem 1rem;
+  --transition-duration: 0.3s;
+}
+
+/* Almennar stillingar */
+html {
+  box-sizing: border-box;
+  font-family: var(--font-base-family);
+  font-size: var(--font-base-size);
+  line-height: 1.5;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--spacing);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Sameiginlegar stillingar fyrir takka (ekki tengla) */
+.aftur-heim,
+.svar-takki {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: var(--button-padding);
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+}
+
+/* Fyrir hlekki innan takka */
+.flokkar-val a,
+.aftur-heim a {
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: var(--button-padding);
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.flokkar-val a:hover,
+.aftur-heim a:hover {
+  text-decoration: underline;
+  background-color: var(--color-primary-dark);
+}
+
+.aftur-heim {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Hoveráhrif fyrir svar-takka */
+.svar-takki:hover {
+  background-color: var(--color-primary-dark);
+}
+
+main {
+  display: grid;
+  align-content: flex-start;
+  gap: var(--spacing-large);
+  margin-inline: auto;
+  padding: var(--spacing);
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+h1, h2, p {
+  margin-bottom: var(--spacing);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-primary-dark);
+}
+
+p, button {
+  font-size: 1rem;
+}
+
+/* Listar */
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin-bottom: var(--spacing-small);
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-small);
+}
+
+.hlekkir li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.titill {
+  margin-bottom: var(--spacing-large);
+  text-align: center;
+}
+
+.spurningar {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.spurning {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: var(--spacing);
+  padding: var(--spacing-large);
+}
+
+.feedback.correct , .feedback.incorrect {
+  font-weight: bold;
+};
+
+@media (width <= 600px) {
+  .spurningar {
+    padding: 0 var(--spacing);
+  }
+
+  .titill h1 {
+    font-size: 1.5rem;
+  }
+}

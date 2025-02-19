@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --env-file=.env --watch-path ./src src/server.js",
-    "setup": "node --env-file=.env ./src/setup.js"
+    "setup": "node --env-file=.env ./src/setup.js",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint ./src/**/*.js",
+    "lint:stylelint": "stylelint ./public/styles.css"
   },
   "keywords": [],
   "author": "",
