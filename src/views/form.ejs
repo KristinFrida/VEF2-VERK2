@@ -1,21 +1,55 @@
 <%- include('header') -%>
 
+<h1>Búa til spurningu</h1>
+
 <form method="post" action="/form">
+  <!-- Spurningin -->
+  <div class="form-group">
+    <label for="question">Spurning:</label>
+    <textarea id="question" name="question" required minlength="10" maxlength="500"></textarea>
+  </div>
 
-  <label for="name">Heiti flokks:</label>
-  <input type="text" id="name" name="name">
-  <input type="number" id="name" name="number">
-  <label>rétt svar #1: <input type="radio" id="name" name="rett_svar" value="1"></label>
-  <label>rétt svar #2: <input type="radio" id="name" name="rett_svar" value="1"></label>
-  <label>rétt svar #3: <input type="radio" id="name" name="rett_svar" value="1"></label>
+  <!-- Velja flokk -->
+  <div class="form-group">
+    <label for="category">Flokkur:</label>
+    <select id="category" name="category" required>
+      <% if (categories && categories.length) { %>
+        <% categories.forEach(category => { %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% }); %>
+      <% } else { %>
+        <option value="">Engir flokkar tiltækir</option>
+      <% } %>
+    </select>
+  </div>
 
-  <input type="checkbox" id="name" name="checkbox">
-  <select>
-    <option>foo</option>
-    <option value="foobar">bar</option>
-  </select>
-  <textarea name="text"></textarea>
-  <button type="submit">Búa til flokk</button>
+  <!-- Svör og rétt svar -->
+  <fieldset>
+    <legend>Svör (merkja rétt svar)</legend>
+    
+    <div class="form-group">
+      <label for="answer1">Svar 1:</label>
+      <input type="text" id="answer1" name="answers[]" required>
+      <input type="radio" id="correct1" name="correctAnswer" value="0" required>
+      <label for="correct1">Rétt?</label>
+    </div>
+    
+    <div class="form-group">
+      <label for="answer2">Svar 2:</label>
+      <input type="text" id="answer2" name="answers[]" required>
+      <input type="radio" id="correct2" name="correctAnswer" value="1">
+      <label for="correct2">Rétt?</label>
+    </div>
+    
+    <div class="form-group">
+      <label for="answer3">Svar 3:</label>
+      <input type="text" id="answer3" name="answers[]" required>
+      <input type="radio" id="correct3" name="correctAnswer" value="2">
+      <label for="correct3">Rétt?</label>
+    </div>
+  </fieldset>
+
+  <button type="submit">Búa til spurningu</button>
 </form>
 
 <%- include('footer') -%>
