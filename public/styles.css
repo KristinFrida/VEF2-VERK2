@@ -14,13 +14,10 @@
   --color-gray-light: #a3b18a;
   --border-radius-small: 0.25rem;
   --border-radius-medium: 0.5rem;
-
-  /* Takkar */
   --button-padding: 0.5rem 1rem;
   --transition-duration: 0.3s;
 }
 
-/* Almennar stillingar */
 html {
   box-sizing: border-box;
   font-family: var(--font-base-family);
@@ -72,8 +69,8 @@ a:hover {
   background-color: var(--color-primary-dark);
 }
 
-.svar-takki {
-  width: 100%;
+.svar-takki,
+.aftur-heim {
   background-color: var(--color-primary);
   color: var(--color-white);
   border: none;
@@ -83,8 +80,18 @@ a:hover {
   transition: background-color var(--transition-duration);
 }
 
-/* Fyrir hlekki innan takka */
-.flokkar-val a {
+.svar-takki {
+  width: 100%;
+}
+
+.aftur-heim {
+  width: 25%;
+  margin-left: auto;
+  margin-top: var(--spacing-large);
+}
+
+.flokkar-val a,
+.aftur-heim a {
   color: var(--color-white);
   border: none;
   border-radius: var(--border-radius-small);
@@ -96,12 +103,12 @@ a:hover {
   text-align: center;
 }
 
-.flokkar-val a:hover{
+.flokkar-val a:hover,
+.aftur-heim a:hover {
   text-decoration: underline;
   background-color: var(--color-primary-dark);
 }
 
-/* Hoveráhrif fyrir svar-takka */
 .svar-takki:hover {
   background-color: var(--color-primary-dark);
 }
@@ -116,7 +123,9 @@ main {
   max-width: var(--max-width);
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin-bottom: var(--spacing);
 }
 
@@ -148,7 +157,7 @@ fieldset {
   margin: 0;
 }
 
-.svar{
+.svar {
   padding-bottom: var(--spacing-large);
 }
 
@@ -177,11 +186,10 @@ form > div {
   margin-bottom: var(--spacing);
 }
 
-.intro{
+.intro {
   text-align: center;
 }
 
-/* Listar */
 ul {
   list-style: none;
 }
@@ -197,11 +205,6 @@ ul li {
   margin-bottom: 1rem;
 }
 
-.titill {
-  margin-bottom: var(--spacing-large);
-  text-align: center;
-}
-
 .spurningar {
   margin: 0 auto;
 }
@@ -214,16 +217,13 @@ ul li {
   padding: var(--spacing-large);
 }
 
-.feedback.correct , .feedback.incorrect {
+.feedback.correct,
+.feedback.incorrect {
   font-weight: bold;
-};
+}
 
 @media (width <= 600px) {
   .spurningar {
     padding: 0 var(--spacing);
-  }
-
-  .titill h1 {
-    font-size: 1.5rem;
   }
 }

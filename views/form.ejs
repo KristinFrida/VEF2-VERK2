@@ -1,19 +1,14 @@
 <%- include('header') -%>
 
 <form method="post" action="/form">
-  <!-- Heiti flokks -->
   <div>
     <label for="name">Heiti flokks:</label>
     <input type="text" id="name" name="name" required>
   </div>
-
-  <!-- Spurning -->
   <div>
     <label for="text">Hver er spurningin?</label>
     <textarea id="text" name="text" rows="2" required></textarea>
   </div>
-
-  <!-- Svarmöguleikar -->
   <fieldset>
     <legend>Svarmöguleikar, merktu við rétt svar</legend>
     
@@ -34,6 +29,9 @@
 
   <div class="bua-til">
     <button type="submit">Búða til</button>
+  </div>
+  <div class="aftur-heim">
+    <a href="/">Aftur heim</a>
   </div>
 </form>
 
