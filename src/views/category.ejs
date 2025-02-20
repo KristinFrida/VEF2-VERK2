@@ -1,5 +1,26 @@
 <%- include('header') -%>
 
-spurnigaflokkur!
+<h1><%= title %></h1>
+<p>Flokkur: <%= categoryName %></p>
+
+<% if (spurningar.length === 0) { %>
+  <p>Engar spurningar fundust í þessum flokki.</p>
+<% } else { %>
+  <% spurningar.forEach((sp) => { %>
+    <h2><%= sp.spurning %></h2>
+    <% if (sp.svor) { %>
+      <ul>
+        <% sp.svor.forEach((s) => { %>
+          <li>
+            <%= s.text %>
+            <% if (s.correct) { %>
+              <strong>(Rétt svar)</strong>
+            <% } %>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  <% }) %>
+<% } %>
 
 <%- include('footer') -%>
