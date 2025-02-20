@@ -1,9 +1,10 @@
 <%- include('header') -%>
-
-<ul>
-  <% for (const category of categories) { %>
-    <li><a href="/spurningar/<%=category.name%>"><%=category.name%></a></li>
-  <% } %>
-</ul>
+<section class="flokkar-val">
+  <ul>
+    <% for (const category of categories) { %>
+     <li><a href="/spurningar/<%=category.name%>"><%=category.name%></a></li>
+    <% } %>
+  </ul>
+</section>
 
 <%- include('footer') -%>
