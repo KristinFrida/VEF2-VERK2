@@ -2,12 +2,11 @@
 import express from 'express';
 import session from 'express-session';
 import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url'
 import { environment } from './lib/environment.js';
 import { handler404, handlerError } from './lib/handlers.js';
 import { logger } from './lib/logger.js';
 import { router } from './routes.js';
-import { formatDate } from './lib/date.js';
 import { getDatabase } from './lib/db.js';
 import { isInvalid } from './lib/is-invalid.js';
 
@@ -35,10 +34,8 @@ const app = express();
 app.set('views', join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
-// Setjum global breytur í `app.locals`
 app.locals = {
   isInvalid,
-  formatDate,
 };
 
 // --- 4) Middleware (röð) ---
@@ -52,11 +49,8 @@ app.use(session(sessionOptions));
 
 // Setjum upp routes
 app.use('/', router);
-
-// 404-handler (ekki inline) – ef engin route fannst
+app.use(express.static(join(__dirname, '../public')));
 app.use(handler404);
-
-// 5xx villu-handler
 app.use(handlerError);
 
 // --- 5) Keyrum server ---
