@@ -1,21 +1,56 @@
 <%- include('header') -%>
 
 <form method="post" action="/form">
+  <!-- Heiti flokks -->
+  <div>
+    <label for="name">Heiti flokks:</label>
+    <input type="text" id="name" name="name" required>
+  </div>
 
-  <label for="name">Heiti flokks:</label>
-  <input type="text" id="name" name="name">
-  <input type="number" id="name" name="number">
-  <label>rétt svar #1: <input type="radio" id="name" name="rett_svar" value="1"></label>
-  <label>rétt svar #2: <input type="radio" id="name" name="rett_svar" value="1"></label>
-  <label>rétt svar #3: <input type="radio" id="name" name="rett_svar" value="1"></label>
+  <div>
+    <label for="text">Hver er spurningin?</label>
+    <textarea id="text" name="text" rows="2"></textarea>
+  </div>
+  <div>
+    <legend>Svarmöguleikar, merktu við rétt svar</legend>
 
-  <input type="checkbox" id="name" name="checkbox">
-  <select>
-    <option>foo</option>
-    <option value="foobar">bar</option>
-  </select>
-  <textarea name="text"></textarea>
-  <button type="submit">Búa til flokk</button>
+    <div>
+      <label for="option1">Svarmöguleiki 1:</label>
+      <input type="text" id="option1" name="option1">
+      <label>
+        <input type="radio" name="rett_svar" value="1">
+        Rétt svar?
+      </label>
+    </div>
+    <div>
+      <label for="option2">Svarmöguleiki 2:</label>
+      <input type="text" id="option2" name="option2">
+      <label>
+        <input type="radio" name="rett_svar" value="2">
+        Rétt svar?
+      </label>
+    </div>
+    <div>
+      <label for="option3">Svarmöguleiki 3:</label>
+      <input type="text" id="option3" name="option3">
+      <label>
+        <input type="radio" name="rett_svar" value="3">
+        Rétt svar?
+      </label>
+    </div>
+    <div>
+      <label for="option4">Svarmöguleiki 4:</label>
+      <input type="text" id="option4" name="option4">
+      <label>
+        <input type="radio" name="rett_svar" value="4">
+        Rétt svar?
+      </label>
+    </div>
+  </div>
+  <label>
+    Búðu til flokk og spurningu eða bættu við spurningu í flokk
+  </label>
+  <button type="submit">Búa til</button>
 </form>
 
 <%- include('footer') -%>
