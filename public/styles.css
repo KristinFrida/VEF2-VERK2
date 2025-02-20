@@ -177,6 +177,10 @@ form > div {
   margin-bottom: var(--spacing);
 }
 
+.intro{
+  text-align: center;
+}
+
 /* Listar */
 ul {
   list-style: none;
