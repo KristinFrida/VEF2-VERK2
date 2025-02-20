@@ -1,3 +1,3 @@
-DROP TABLE IF EXISTS public.categories;
-DROP TABLE IF EXISTS public.spurningar;
-DROP TABLE IF EXISTS public.svor;
+DROP TABLE IF EXISTS public.categories CASCADE;
+DROP TABLE IF EXISTS public.spurningar CASCADE;
+DROP TABLE IF EXISTS public.svor CASCADE;
