@@ -3,35 +3,36 @@
 <h1><%= title %></h1>
 <p>Flokkur: <%= categoryName %></p>
 
-<% if (spurningar.length === 0) { %>
-  <p>Engar spurningar fundust í þessum flokki.</p>
-<% } else { %>
-  <% spurningar.forEach((sp) => { %>
-    <!-- Hver spurning fær klasa 'spurning' -->
-    <div class="spurning">
-      <h2><%= sp.spurning %></h2>
-      <% if (sp.svor) { %>
-        <ul>
-          <% sp.svor.forEach((s) => { %>
-            <li>
-              <!-- Hver svarmöguleiki er takki með klasa 'svar-takki' -->
-              <!-- 'data-correct' segir til um rétt/rangt -->
-              <button
-                type="button"
-                class="svar-takki"
-                data-correct="<%= s.correct ? 'true' : 'false' %>"
-              >
-                <%= s.text %>
-              </button>
-            </li>
-          <% }) %>
-        </ul>
-      <% } %>
-      <!-- Hér getum við haft tómt <p> eða við bætum því við dynamically -->
-      <!-- <p class="feedback" style="display: none;"></p> -->
-    </div>
-  <% }) %>
-<% } %>
+<div class="spurningar">
+  <% if (spurningar.length === 0) { %>
+    <p>Engar spurningar fundust í þessum flokki.</p>
+  <% } else { %>
+    <% spurningar.forEach((sp) => { %>
+      <!-- Hver spurning fær klasa 'spurning' -->
+      <div class="spurning">
+        <h2><%= sp.spurning %></h2>
+        <% if (sp.svor) { %>
+          <ul>
+            <% sp.svor.forEach((s) => { %>
+              <li>
+                <!-- Hver svarmöguleiki er takki með klasa 'svar-takki' -->
+                <button
+                  type="button"
+                  class="svar-takki"
+                  data-correct="<%= s.correct ? 'true' : 'false' %>"
+                >
+                  <%= s.text %>
+                </button>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+        <!-- Hér getum við haft tómt <p> eða bætt við dynamískt -->
+        <!-- <p class="feedback" style="display: none;"></p> -->
+      </div>
+    <% }) %>
+  <% } %>
+</div>
 
 <!-- Svo vísum við í JavaScript skránna sem inniheldur kóðann að neðan -->
 <script src="../js/category-check.js"></script>
