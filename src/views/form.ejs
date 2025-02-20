@@ -7,49 +7,31 @@
     <input type="text" id="name" name="name" required>
   </div>
 
+  <!-- Spurning -->
   <div>
     <label for="text">Hver er spurningin?</label>
-    <textarea id="text" name="text" rows="2"></textarea>
+    <textarea id="text" name="text" rows="2" required></textarea>
   </div>
-  <div>
-    <legend>Svarmöguleikar, merktu við rétt svar</legend>
 
-    <div>
-      <label for="option1">Svarmöguleiki 1:</label>
-      <input type="text" id="option1" name="option1">
-      <label>
-        <input type="radio" name="rett_svar" value="1">
-        Rétt svar?
-      </label>
-    </div>
-    <div>
-      <label for="option2">Svarmöguleiki 2:</label>
-      <input type="text" id="option2" name="option2">
-      <label>
-        <input type="radio" name="rett_svar" value="2">
-        Rétt svar?
-      </label>
-    </div>
-    <div>
-      <label for="option3">Svarmöguleiki 3:</label>
-      <input type="text" id="option3" name="option3">
-      <label>
-        <input type="radio" name="rett_svar" value="3">
-        Rétt svar?
-      </label>
-    </div>
-    <div>
-      <label for="option4">Svarmöguleiki 4:</label>
-      <input type="text" id="option4" name="option4">
-      <label>
-        <input type="radio" name="rett_svar" value="4">
-        Rétt svar?
-      </label>
-    </div>
-  </div>
-  <label>
-    Búðu til flokk og spurningu eða bættu við spurningu í flokk
-  </label>
+  <!-- Svarmöguleikar -->
+  <fieldset>
+    <legend>Svarmöguleikar, merktu við rétt svar</legend>
+    
+    <% for(let i = 1; i <= 4; i++) { %>
+      <div>
+        <label for="option<%= i %>">Svarmöguleiki <%= i %>:</label>
+        <input type="text" id="option<%= i %>" name="option<%= i %>" required>
+
+        <label>
+          <input type="radio" name="rett_svar" value="<%= i %>" required>
+          Rétt svar?
+        </label>
+      </div>
+    <% } %>
+  </fieldset>
+
+  <p>Búðu til flokk og spurningu eða bættu við spurningu í flokk</p>
+
   <button type="submit">Búa til</button>
 </form>
 
