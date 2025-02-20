@@ -41,8 +41,7 @@ app.locals = {
 // --- 4) Middleware (röð) ---
 app.use(express.urlencoded({ extended: true }));
 
-// Bjóðum upp á static skrár úr src/lib á slóð /js
-app.use('/js', express.static(join(__dirname, 'src/lib')));
+app.use(express.static(join(__dirname, '../public')));
 
 // Setjum upp session
 app.use(session(sessionOptions));
