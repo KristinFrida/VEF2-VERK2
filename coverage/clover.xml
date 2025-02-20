@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1740009928701" clover="3.2.0">
-  <project timestamp="1740009928702" name="All files">
-    <metrics statements="101" coveredstatements="23" conditionals="38" coveredconditionals="16" methods="15" coveredmethods="1" elements="154" coveredelements="40" complexity="0" loc="101" ncloc="101" packages="1" files="4" classes="4"/>
+<coverage generated="1740010213916" clover="3.2.0">
+  <project timestamp="1740010213917" name="All files">
+    <metrics statements="101" coveredstatements="34" conditionals="38" coveredconditionals="23" methods="15" coveredmethods="5" elements="154" coveredelements="62" complexity="0" loc="101" ncloc="101" packages="1" files="4" classes="4"/>
     <file name="db.client.js" path="C:\Users\pegac\Documents\A Skólinn\Tolvunarfraedi\Onn 4\vef2\verk2\src\lib\db.client.js">
       <metrics statements="42" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="0"/>
       <line num="15" count="0" type="stmt"/>
@@ -102,18 +102,18 @@
       <line num="61" count="1" type="stmt"/>
     </file>
     <file name="logger.js" path="C:\Users\pegac\Documents\A Skólinn\Tolvunarfraedi\Onn 4\vef2\verk2\src\lib\logger.js">
-      <metrics statements="11" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <line num="3" count="0" type="stmt"/>
-      <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="8" count="0" type="stmt"/>
-      <line num="10" count="0" type="stmt"/>
-      <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="15" count="0" type="stmt"/>
-      <line num="17" count="0" type="stmt"/>
-      <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="28" count="0" type="stmt"/>
+      <metrics statements="11" coveredstatements="11" conditionals="7" coveredconditionals="7" methods="4" coveredmethods="4"/>
+      <line num="3" count="7" type="stmt"/>
+      <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="14" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
