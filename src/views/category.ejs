@@ -19,7 +19,7 @@
               <button
                 type="button"
                 class="svar-takki"
-                data-correct="<%= s.correct %>"
+                data-correct="<%= s.correct ? 'true' : 'false' %>"
               >
                 <%= s.text %>
               </button>
@@ -34,6 +34,6 @@
 <% } %>
 
 <!-- Svo vísum við í JavaScript skránna sem inniheldur kóðann að neðan -->
-<script src="/js/category-check.js"></script>
+<script src="../lib/category-check.js"></script>
 
 <%- include('footer') -%>

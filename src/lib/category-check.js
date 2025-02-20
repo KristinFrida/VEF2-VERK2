@@ -9,13 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   svarTakkar.forEach((takki) => {
     takki.addEventListener('click', () => {
-      // Athugum hvort þetta svar er rétt
+      console.log('Smellt á takka!'); // Villur?
       const erRett = takki.dataset.correct === 'true';
-
-      // Finnum "spurning" blokkin sem takki tilheyrir
+      console.log('erRett =', erRett);
       const spurningElement = takki.closest('.spurning');
-
-      // Finnum (eða búum til) <p class="feedback"> til að birta skilaboð
+      console.log('spurningElement =', spurningElement);
       let skilaboð = spurningElement.querySelector('.feedback');
       if (!skilaboð) {
         skilaboð = document.createElement('p');
