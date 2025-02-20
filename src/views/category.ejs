@@ -7,20 +7,33 @@
   <p>Engar spurningar fundust í þessum flokki.</p>
 <% } else { %>
   <% spurningar.forEach((sp) => { %>
-    <h2><%= sp.spurning %></h2>
-    <% if (sp.svor) { %>
-      <ul>
-        <% sp.svor.forEach((s) => { %>
-          <li>
-            <%= s.text %>
-            <% if (s.correct) { %>
-              <strong>(Rétt svar)</strong>
-            <% } %>
-          </li>
-        <% }) %>
-      </ul>
-    <% } %>
+    <!-- Hver spurning fær klasa 'spurning' -->
+    <div class="spurning">
+      <h2><%= sp.spurning %></h2>
+      <% if (sp.svor) { %>
+        <ul>
+          <% sp.svor.forEach((s) => { %>
+            <li>
+              <!-- Hver svarmöguleiki er takki með klasa 'svar-takki' -->
+              <!-- 'data-correct' segir til um rétt/rangt -->
+              <button
+                type="button"
+                class="svar-takki"
+                data-correct="<%= s.correct %>"
+              >
+                <%= s.text %>
+              </button>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <!-- Hér getum við haft tómt <p> eða við bætum því við dynamically -->
+      <!-- <p class="feedback" style="display: none;"></p> -->
+    </div>
   <% }) %>
 <% } %>
+
+<!-- Svo vísum við í JavaScript skránna sem inniheldur kóðann að neðan -->
+<script src="/js/category-check.js"></script>
 
 <%- include('footer') -%>

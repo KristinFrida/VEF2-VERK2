@@ -23,7 +23,8 @@ const env = environment(process.env, logger);
 if (!env) {
   process.exit(1);
 }
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const { port, sessionSecret } = env;
 const path = dirname(fileURLToPath(import.meta.url));
@@ -46,6 +47,8 @@ app.locals = {
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', router);
+app.use('/js', express.static(join(__dirname, 'src/lib')));
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionOptions));
