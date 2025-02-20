@@ -52,8 +52,26 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Sameiginlegar stillingar fyrir takka (ekki tengla) */
-.aftur-heim,
+.bua-til {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.bua-til button {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-small);
+  padding: var(--button-padding);
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+}
+
+.bua-til button:hover {
+  background-color: var(--color-primary-dark);
+}
+
 .svar-takki {
   width: 100%;
   background-color: var(--color-primary);
@@ -66,8 +84,7 @@ a:hover {
 }
 
 /* Fyrir hlekki innan takka */
-.flokkar-val a,
-.aftur-heim a {
+.flokkar-val a {
   color: var(--color-white);
   border: none;
   border-radius: var(--border-radius-small);
@@ -79,15 +96,9 @@ a:hover {
   text-align: center;
 }
 
-.flokkar-val a:hover,
-.aftur-heim a:hover {
+.flokkar-val a:hover{
   text-decoration: underline;
   background-color: var(--color-primary-dark);
-}
-
-.aftur-heim {
-  width: 50%;
-  margin: 0 auto;
 }
 
 /* Hoveráhrif fyrir svar-takka */
@@ -116,8 +127,54 @@ h1 {
   color: var(--color-primary-dark);
 }
 
-p, button {
+p {
   font-size: 1rem;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: var(--spacing-small);
+}
+
+form p {
+  text-align: center;
+  margin-top: var(--spacing);
+}
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing);
+  margin: 0;
+}
+
+.svar{
+  padding-bottom: var(--spacing-large);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: var(--spacing);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  padding: var(--spacing);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing);
 }
 
 /* Listar */
@@ -143,7 +200,6 @@ ul li {
 
 .spurningar {
   margin: 0 auto;
-  max-width: 600px;
 }
 
 .spurning {

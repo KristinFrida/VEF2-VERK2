@@ -18,7 +18,7 @@
     <legend>Svarmöguleikar, merktu við rétt svar</legend>
     
     <% for(let i = 1; i <= 4; i++) { %>
-      <div>
+      <div class="svar">
         <label for="option<%= i %>">Svarmöguleiki <%= i %>:</label>
         <input type="text" id="option<%= i %>" name="option<%= i %>" required>
 
@@ -32,7 +32,9 @@
 
   <p>Búðu til flokk og spurningu eða bættu við spurningu í flokk</p>
 
-  <button type="submit">Búa til</button>
+  <div class="bua-til">
+    <button type="submit">Búða til</button>
+  </div>
 </form>
 
 <%- include('footer') -%>
