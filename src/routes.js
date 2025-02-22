@@ -103,14 +103,19 @@ router.post('/form', async (req, res) => {
     });
   }
   
-  // Setjum flokkinn inn ef hann er ekki til
-  await db.query(
-    `INSERT INTO categories (name) VALUES ($1) ON CONFLICT (name) DO NOTHING`,
-    [name]
-  );
-  
-  // Finna category_id
+  // Staðfestum að flokkurinn sé til (ekki bætt við nýjum)
   const catIdResult = await db.query('SELECT id FROM categories WHERE name = $1', [name]);
+  if (catIdResult.rows.length === 0) {
+    errors.push('Flokkurinn er ekki til. Vinsamlegast veldu gildan flokk.');
+    const result = await db.query('SELECT * FROM categories ORDER BY created DESC');
+    const categories = result?.rows ?? [];
+    return res.render('form', {
+      title: 'Búa til spurningu',
+      categories,
+      errors,
+      formData: { name, text, option1, option2, option3, option4, rett_svar }
+    });
+  }
   const categoryId = catIdResult.rows[0].id;
   
   // Setja inn spurninguna
