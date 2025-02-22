@@ -69,6 +69,10 @@ a:hover {
   background-color: var(--color-primary-dark);
 }
 
+textarea {
+  resize: vertical;
+}
+
 select {
   width: 100%;
   padding: var(--spacing);
