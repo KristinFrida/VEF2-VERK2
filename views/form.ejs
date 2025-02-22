@@ -2,11 +2,21 @@
 
 <h1>Búa til spurningu</h1>
 
-<!-- Almennur villulisti birtur ef formið inniheldur villur -->
-<div id="error-box" class="error-box hidden">
-  <strong>Vinsamlegast lagið eftirfarandi villur:</strong>
-  <ul id="error-list"></ul>
-</div>
+<% if (errors && errors.length > 0) { %>
+  <div id="error-box" class="error-box">
+    <strong>Vinsamlegast lagið eftirfarandi villur:</strong>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } else { %>
+  <div id="error-box" class="error-box hidden">
+    <strong>Vinsamlegast lagið eftirfarandi villur:</strong>
+    <ul id="error-list"></ul>
+  </div>
+<% } %>
 
 <form id="question-form" method="post" action="/form" novalidate>
   <div class="form-group">
@@ -23,8 +33,8 @@
   <div class="form-group">
     <label for="text">Hver er spurningin?</label>
     <textarea id="text" name="text" rows="2" required minlength="10" maxlength="300"><%= formData?.text ?? '' %></textarea>
-    <!-- Villumelding birtist hér ef spurningin er ekki rétt -->
-    <small id="text-error" class="error-message hidden">⚠️ Spurningin verður að vera á milli 10 og 300 stafa.</small>
+    <!-- Villumelding fyrir spurningareitinn (textinn hefur verið fjarlægður) -->
+    <small id="text-error" class="error-message hidden"></small>
   </div>  
 
   <fieldset>
@@ -69,7 +79,6 @@
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
-    display: none;
   }
 
   .error-box strong {
@@ -104,12 +113,11 @@
     const errorList = document.getElementById('error-list');
     errorList.innerHTML = '';
 
-    // Athuga spurningareitinn
+    // Athuga spurningareitinn (villuboðin eru ekki sett hér fyrir spurninguna)
     const questionField = document.getElementById('text');
     const questionValue = questionField.value.trim();
     const questionError = document.getElementById('text-error');
     if (questionValue.length < 10 || questionValue.length > 300) {
-      errors.push("Spurningin verður að vera á milli 10 og 300 stafa.");
       questionError.classList.remove('hidden');
       questionField.classList.add('input-error');
     } else {
@@ -163,7 +171,6 @@
     const field = document.getElementById(fieldId);
     const errorMsg = document.getElementById(errorId);
     field.addEventListener('input', function() {
-      // Villumelding birtist aðeins ef formið hefur verið sent einu sinni
       if (!submitted) return;
       const value = field.value.trim();
       if (value.length >= min && value.length <= max) {
@@ -176,19 +183,16 @@
     });
   };
 
-  // Bæta við rauntímaviltun fyrir spurningareitinn og hverja svari
   addLiveValidation('text', 'text-error', 10, 300);
   for (let i = 1; i <= 4; i++) {
     addLiveValidation('option' + i, 'option' + i + '-error', 10, 300);
   }
 
-  // Global rauntímaviltun fyrir formið til að uppfæra error-box ef allar villur hverfa
   document.getElementById('question-form').addEventListener('input', function() {
     if (!submitted) return;
     const errors = validateForm();
     const errorBox = document.getElementById('error-box');
     const errorList = document.getElementById('error-list');
-    // Hreinsa error-box ef engar villur eru til
     if (errors.length === 0) {
       errorBox.style.display = 'none';
       errorList.innerHTML = '';

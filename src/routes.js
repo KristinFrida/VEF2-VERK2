@@ -57,12 +57,12 @@ router.post('/form', async (req, res) => {
   
   const { name, text, option1, option2, option3, option4, rett_svar } = req.body;
   const errors = [];
-
+  
   // Athugum hvort spurningin uppfylli skilyrðin
   if (!text || text.length < 10 || text.length > 300) {
     errors.push('Spurningin þarf að vera á milli 10 og 300 stafa.');
   }
-
+  
   // Athugum hvort hver svarmöguleiki uppfylli skilyrðin
   const answers = [option1, option2, option3, option4];
   answers.forEach((svar, index) => {
@@ -70,16 +70,17 @@ router.post('/form', async (req, res) => {
       errors.push(`Svarmöguleiki ${index + 1} þarf að vera á milli 10 og 300 stafa.`);
     }
   });
-
+  
   // Athugum hvort rétt svar hafi verið valið
   if (!rett_svar || !['1', '2', '3', '4'].includes(rett_svar)) {
     errors.push('Þú verður að velja rétt svar.');
   }
-
+  
+  // Ef einhver villa kemur upp, renderum við formið aftur með villunum
   if (errors.length > 0) {
-    const result = await db?.query('SELECT * FROM categories ORDER BY created DESC');
+    const result = await db.query('SELECT * FROM categories ORDER BY created DESC');
     const categories = result?.rows ?? [];
-
+  
     return res.render('form', {
       title: 'Búa til spurningu',
       categories,
@@ -87,25 +88,39 @@ router.post('/form', async (req, res) => {
       formData: { name, text, option1, option2, option3, option4, rett_svar }
     });
   }
-
+  
+  // Athuga hvort spurningin er nú þegar til
+  const existingQuestion = await db.query('SELECT id FROM spurningar WHERE spurning = $1', [text]);
+  if (existingQuestion.rows.length > 0) {
+    errors.push('Spurningin er nú þegar til.');
+    const result = await db.query('SELECT * FROM categories ORDER BY created DESC');
+    const categories = result?.rows ?? [];
+    return res.render('form', {
+      title: 'Búa til spurningu',
+      categories,
+      errors,
+      formData: { name, text, option1, option2, option3, option4, rett_svar }
+    });
+  }
+  
   // Setjum flokkinn inn ef hann er ekki til
   await db.query(
     `INSERT INTO categories (name) VALUES ($1) ON CONFLICT (name) DO NOTHING`,
     [name]
   );
-
+  
   // Finna category_id
   const catIdResult = await db.query('SELECT id FROM categories WHERE name = $1', [name]);
   const categoryId = catIdResult.rows[0].id;
-
+  
   // Setja inn spurninguna
   const spurningResult = await db.query(
     `INSERT INTO spurningar (spurning, category_id) VALUES ($1, $2) RETURNING id`,
     [text, categoryId]
   );
   const spurningId = spurningResult.rows[0].id;
-
-  // Setja inn svörin
+  
+  // Setja inn svörin (leyfir að tvö svör séu eins)
   for (let i = 0; i < answers.length; i++) {
     const svarText = answers[i];
     const isCorrect = (String(i + 1) === rett_svar);
@@ -114,7 +129,7 @@ router.post('/form', async (req, res) => {
       [svarText, spurningId, isCorrect]
     );
   }
-
+  
   // Áframsendum notanda á spurningar í valinn flokk
   res.redirect(`/spurningar/${name}`);
 });
