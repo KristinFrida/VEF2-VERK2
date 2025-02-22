@@ -208,9 +208,16 @@ ul {
   list-style: none;
 }
 
-ul li {
+.flokkar-val ul li, .spurningar ul li {
   margin-bottom: var(--spacing-small);
   background-color: var(--color-primary);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-small);
+}
+
+.error-box ul li {
+  margin-bottom: var(--spacing-small);
+  background-color: var(--color-white);
   border-radius: var(--border-radius-medium);
   padding: var(--spacing-small);
 }
