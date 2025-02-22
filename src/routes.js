@@ -30,6 +30,12 @@ router.get('/spurningar/:category', async (req, res) => {
   `;
   const result = await db?.query(query, [categoryName]);
   const spurningar = result?.rows ?? [];
+
+  if (spurningar.length === 0 && !['HTML', 'CSS', 'JavaScript'].includes(categoryName)) {
+    res.status(404).render('not-found');
+    return;
+  }
+  
   res.render('category', {
     title: `Spurningar í „${categoryName}“`,
     categoryName,
