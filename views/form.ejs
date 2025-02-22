@@ -31,7 +31,7 @@
   <div class="form-group">
     <label for="text">Hver er spurningin?</label>
     <textarea id="text" name="text" rows="2" required minlength="10" maxlength="300"><%= formData?.text ?? '' %></textarea>
-    <small id="text-error" class="error-message hidden"></small>
+    <small id="text-error" class="error-message hidden">Spurningin verður að vera á milli 10 og 300 stafa.</small>
   </div>  
 
   <fieldset>
