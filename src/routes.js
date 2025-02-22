@@ -70,6 +70,12 @@ router.post('/form', async (req, res) => {
       errors.push(`Svarmöguleiki ${index + 1} þarf að vera á milli 10 og 300 stafa.`);
     }
   });
+
+  // Athugum hvort tveir eða fleiri svarmöguleikar séu eins
+  const uniqueAnswers = new Set(answers);
+  if (uniqueAnswers.size < answers.length) {
+    errors.push('Tvö eða fleiri svarmöguleikar eru eins. Vinsamlegast notaðu mismunandi svarmöguleika.');
+  }
   
   // Athugum hvort rétt svar hafi verið valið
   if (!rett_svar || !['1', '2', '3', '4'].includes(rett_svar)) {
