@@ -5,14 +5,12 @@
     <p>Engar spurningar fundust í þessum flokki.</p>
   <% } else { %>
     <% spurningar.forEach((sp) => { %>
-      <!-- Hver spurning fær klasa 'spurning' -->
       <div class="spurning">
         <h2><%= sp.spurning %></h2>
         <% if (sp.svor) { %>
           <ul>
             <% sp.svor.forEach((s) => { %>
               <li>
-                <!-- Hver svarmöguleiki er takki með klasa 'svar-takki' -->
                 <button
                   type="button"
                   class="svar-takki"
@@ -24,8 +22,6 @@
             <% }) %>
           </ul>
         <% } %>
-        <!-- Hér getum við haft tómt <p> eða bætt við dynamískt -->
-        <!-- <p class="feedback" style="display: none;"></p> -->
       </div>
     <% }) %>
   <% } %>

@@ -2,8 +2,12 @@
 
 <form method="post" action="/form">
   <div>
-    <label for="name">Heiti flokks:</label>
-    <input type="text" id="name" name="name" required>
+    <label for="category">Veldu flokk:</label>
+    <select id="category" name="category" required>
+      <% categories.forEach((category) => { %>
+        <option value="<%= category.name %>"><%= category.name %></option>
+      <% }) %>
+    </select>
   </div>
   <div>
     <label for="text">Hver er spurningin?</label>
@@ -25,7 +29,7 @@
     <% } %>
   </fieldset>
 
-  <p>Búðu til flokk og spurningu eða bættu við spurningu í flokk</p>
+  <p>Bættu við spurningu í flokk hér</p>
 
   <div class="bua-til">
     <button type="submit">Búða til</button>
