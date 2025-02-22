@@ -4,7 +4,7 @@ const { DATABASE_URL: connectionString } = process.env;
 
 if (!connectionString) {
   console.error('Missing DATABASE_URL from env');
-  process.exit(1);
+  throw new Error('Missing DATABASE_URL from env');
 } else {
   console.info(connectionString);
 }
@@ -22,7 +22,6 @@ export async function categoriesFromDatabase() {
   if (result?.rowCount > 0) {
     return result.rows;
   }
-
   return null;
 }
 
