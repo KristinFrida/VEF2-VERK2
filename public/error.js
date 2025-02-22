@@ -14,10 +14,12 @@ const validateForm = () => {
   if (questionValue.length < 10 || questionValue.length > 300) {
     questionError.classList.remove('hidden');
     questionField.classList.add('input-error');
+    errors.push('Spurningin verður að vera á milli 10 og 300 stafa.');
   } else {
     questionError.classList.add('hidden');
     questionField.classList.remove('input-error');
   }
+  
 
   // Athuga svarmöguleika
   for (let i = 1; i <= 4; i++) {
