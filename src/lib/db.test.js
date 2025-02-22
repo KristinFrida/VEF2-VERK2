@@ -9,7 +9,11 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  process.exit.mockRestore();
+  jest.restoreAllMocks();
+});
+
+beforeEach(() => {
+  process.env.DATABASE_URL = 'postgres://fake_user:fake_password@localhost:5432/fake_db';
 });
 
 jest.mock('pg', () => {
@@ -19,7 +23,7 @@ jest.mock('pg', () => {
   };
   const mPool = {
     connect: jest.fn(() => Promise.resolve(mClient)),
-    end: jest.fn(),
+    end: jest.fn(() => Promise.resolve()),
     on: jest.fn(),
   };
   return { Pool: jest.fn(() => mPool) };
@@ -29,7 +33,7 @@ describe('Database functions', () => {
   let mockPool;
   let mockClient;
 
-  beforeEach(async () => { // Gerum þetta async til að nota await
+  beforeEach(async () => {
     mockPool = new pg.Pool();
     mockClient = await mockPool.connect();
     mockClient.query.mockClear();
@@ -66,7 +70,7 @@ describe('Database functions', () => {
 
     const result = await query(mockQuery);
     expect(result).toEqual(mockData);
-    expect(mockClient.query).toHaveBeenCalledWith(mockQuery);
+    expect(mockClient.query).toHaveBeenCalledWith(mockQuery, []);
     expect(mockClient.release).toHaveBeenCalled();
   });
 
@@ -81,7 +85,7 @@ describe('Database functions', () => {
     mockClient.query.mockRejectedValueOnce(new Error('Query failed'));
 
     const result = await query('SELECT * FROM test');
-    expect(result).toBeUndefined();
+    expect(result).toBeNull();
     expect(mockClient.release).toHaveBeenCalled();
   });
 });

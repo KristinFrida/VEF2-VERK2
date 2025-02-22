@@ -33,7 +33,7 @@ describe('Database class', () => {
   let db;
 
   beforeEach(() => {
-    db = new Database('fake_connection_string');
+    db = new Database('fake_connection_string', console); // Notum console sem logger
     db.open();
   });
 
@@ -44,7 +44,7 @@ describe('Database class', () => {
 
   test('open initializes the connection pool', () => {
     expect(db.pool).toBeDefined();
-    expect(pg.Pool).toHaveBeenCalledWith(expect.any(Object));
+    expect(pg.Pool).toHaveBeenCalledTimes(1);
   });
 
   test('close shuts down the pool', async () => {
