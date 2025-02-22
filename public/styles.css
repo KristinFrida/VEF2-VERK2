@@ -260,8 +260,8 @@ ul {
 
 .error-message {
   color: var(--color-red);
-  font-size: 0.9em;
-  margin-top: 5px;
+  margin-top: var(--spacing-small);
+  font-size: var(--font-size-small);
   display: block;
 }
 
