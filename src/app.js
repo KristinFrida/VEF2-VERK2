@@ -38,10 +38,12 @@ app.locals = {
   isInvalid,
 };
 
-// --- 4) Middleware (röð) ---
-app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  next();
+});
 
-app.use(express.static(join(__dirname, '../public')));
+app.use(express.urlencoded({ extended: true }));
 
 // Setjum upp session
 app.use(session(sessionOptions));
