@@ -42,7 +42,7 @@
         <label for="option<%= i %>">Svarmöguleiki <%= i %>:</label>
         <input type="text" id="option<%= i %>" name="option<%= i %>" required minlength="10" maxlength="300"
           value="<%= formData?.['option' + i] ?? '' %>">
-        <small id="option<%= i %>-error" class="error-message hidden">⚠️ Svarið verður að vera á milli 10 og 300 stafa.</small>
+        <small id="option<%= i %>-error" class="error-message hidden">Svarið verður að vera á milli 10 og 300 stafa.</small>
 
         <label>
           <input type="radio" name="rett_svar" value="<%= i %>" <%= formData?.rett_svar == i ? 'checked' : '' %> required>

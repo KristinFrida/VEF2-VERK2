@@ -258,11 +258,14 @@ ul {
   color: var(--color-red);
 }
 
+.form-group {
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
 .error-message {
-  color: var(--color-red);
-  margin-top: var(--spacing-small);
-  font-size: 0.875rem;
+  font-size: calc(var(--font-base-size) * 0.8);
   display: block;
+  text-align: right;
 }
 
 .input-error {
