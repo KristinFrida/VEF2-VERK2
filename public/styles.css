@@ -12,6 +12,7 @@
   --color-background: #dad7cd;
   --color-white: #fff;
   --color-gray-light: #a3b18a;
+  --color-red: #ff4d4d;
   --border-radius-small: 0.25rem;
   --border-radius-medium: 0.5rem;
   --button-padding: 0.5rem 1rem;
@@ -241,30 +242,24 @@ ul li {
 
 .error-box {
   background-color: #ffe0e0;
-  border: 1px solid #ff4d4d;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  border: 1px solid var(--color-red);
+  padding: var(--spacing);
+  border-radius:var(--spacing-small)
 }
 
 .error-box strong {
-  color: #d60000;
-}
-
-.error-box ul {
-  margin: 0;
-  padding-left: 20px;
+  color: var(--color-red);
 }
 
 .error-message {
-  color: red;
+  color: var(--color-red);
   font-size: 0.9em;
   margin-top: 5px;
   display: block;
 }
 
 .input-error {
-  border: 2px solid red !important;
+  border: 2px solid var(--color-red);
   background-color: var(--color-white)
 }
 
