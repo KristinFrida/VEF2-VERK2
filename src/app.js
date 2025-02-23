@@ -7,21 +7,18 @@ import { environment } from './lib/environment.js';
 import { handler404, handlerError } from './lib/handlers.js';
 import { logger } from './lib/logger.js';
 import { router } from './routes.js';
-import { getDatabase } from './lib/db.js';
+import { getDatabase } from './lib/db.client.js';
 import { isInvalid } from './lib/is-invalid.js';
 
-// --- 1) Sækjum config ---
 const env = environment(process.env, logger);
 if (!env) {
   process.exit(1);
 }
 const { port, sessionSecret } = env;
 
-// --- 2) Útfærum __dirname í ES Modules ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// --- 3) Setjum upp express, session, passport og routes ---
 const sessionOptions = {
   secret: sessionSecret,
   resave: false,
@@ -30,7 +27,6 @@ const sessionOptions = {
 
 const app = express();
 
-// Stillingar á views
 app.set('views', join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
@@ -45,21 +41,17 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }));
 
-// Setjum upp session
 app.use(session(sessionOptions));
 
-// Setjum upp routes
 app.use('/', router);
 app.use(express.static(join(__dirname, '../public')));
 app.use(handler404);
 app.use(handlerError);
 
-// --- 5) Keyrum server ---
 const server = app.listen(port, () => {
   console.info(`🚀 Server running at http://localhost:${port}/`);
 });
 
-// --- 6) Graceful shutdown á SIGTERM ---
 process.on('SIGTERM', async () => {
   logger.info('🛑 shutting down');
   server.close((e) => {
