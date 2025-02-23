@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "startnetlify": "node ./src/server.js",
+    "startnetlify": "node ./src/app.js",
     "dev": "node --env-file=.env --watch-path ./src src/server.js",
     "setup": "node --env-file=.env ./src/setup.js",
     "start": "node --env-file=.env ./src/server.js",
