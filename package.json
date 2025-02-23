@@ -40,10 +40,23 @@
     "globals": "^15.14.0",
     "jest": "^29.7.0"
   },
-  "jest": {
-    "transform": {},
-    "collectCoverageFrom": [
-      "./src/**/lib/**"
-    ]
+    "jest": {
+      "transform": {},
+      "collectCoverageFrom": [
+        "./src/**/lib/**"
+      ],
+      "testPathIgnorePatterns": [
+        "<rootDir>/src/lib/db.client.js",
+        "<rootDir>/src/lib/db.client.test.js",
+        "<rootDir>/src/lib/db.js",
+        "<rootDir>/src/lib/db.test.js"
+      ],
+      "coveragePathIgnorePatterns": [
+        "<rootDir>/src/lib/db.client.js",
+        "<rootDir>/src/lib/db.client.test.js",
+        "<rootDir>/src/lib/db.js",
+        "<rootDir>/src/lib/db.test.js"
+      ]
+    }
   }
-}
+

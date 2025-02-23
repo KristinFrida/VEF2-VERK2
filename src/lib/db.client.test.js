@@ -7,8 +7,7 @@ import {
    afterAll,
    afterEach,
    test,
-   jest 
-  } from '@jest/globals';
+   jest } from '@jest/globals';
 import { Database, getDatabase } from './db.client.js';
 
 jest.mock('pg', () => {
