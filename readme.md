@@ -1,5 +1,6 @@
 # Vefforritun 2, 2025, verkefni 2: Express, postgres og hýsing
 
+## Hvernig þú keyrir verkefnið
 ```bash
 npm install
 npm run setup # setur upp gagnagrunn og setur inn gögn
