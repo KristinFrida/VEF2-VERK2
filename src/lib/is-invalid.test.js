@@ -2,38 +2,38 @@ import { isInvalid } from './is-invalid.js';
 import { describe, expect, test } from '@jest/globals';
 
 describe('isInvalid', () => {
-  test('returns true if field is in errors', () => {
-    const errors = [
-      { path: 'email', message: 'Invalid email' },
-      { path: 'password', message: 'Password too short' },
+  test('skilar true ef reiturinn er til staðar í villulistanum', () => {
+    const villur = [
+      { path: 'email', message: 'Ógilt netfang' },
+      { path: 'password', message: 'Lykilorð of stutt' },
     ];
-    expect(isInvalid('email', errors)).toBe(true);
-    expect(isInvalid('password', errors)).toBe(true);
+    expect(isInvalid('email', villur)).toBe(true);
+    expect(isInvalid('password', villur)).toBe(true);
   });
 
-  test('returns false if field is not in errors', () => {
-    const errors = [
-      { path: 'email', message: 'Invalid email' },
+  test('skilar false ef reiturinn er ekki til staðar í villulistanum', () => {
+    const villur = [
+      { path: 'email', message: 'Ógilt netfang' },
     ];
-    expect(isInvalid('password', errors)).toBe(false);
+    expect(isInvalid('password', villur)).toBe(false);
   });
 
-  test('returns false if errors array is empty', () => {
+  test('skilar false ef villulistanum er tómur', () => {
     expect(isInvalid('email', [])).toBe(false);
   });
 
-  test('returns false if errors is undefined', () => {
+  test('skilar false ef villulistan er óskilgreind', () => {
     expect(isInvalid('email')).toBe(false);
   });
 
-  test('handles errors with undefined or null elements', () => {
-    const errors = [
-      { path: 'email', message: 'Invalid email' },
+  test('meðhöndlar villur með óskilgreindum eða null gildum', () => {
+    const villur = [
+      { path: 'email', message: 'Ógilt netfang' },
       null,
       undefined,
-      { path: 'password', message: 'Password too short' },
+      { path: 'password', message: 'Lykilorð of stutt' },
     ];
-    expect(isInvalid('email', errors)).toBe(true);
-    expect(isInvalid('password', errors)).toBe(true);
+    expect(isInvalid('email', villur)).toBe(true);
+    expect(isInvalid('password', villur)).toBe(true);
   });
 });

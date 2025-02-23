@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const svarTakkar = document.querySelectorAll('.svar-takki');
-
+  /**
+   * Loop through the svar-takki elements and add a click event listener to each one.
+   * When a svar-takki is clicked, check if it's the correct answer and display a feedback message.
+   */
   svarTakkar.forEach((takki) => {
     takki.addEventListener('click', () => {
       const erRett = takki.dataset.correct === 'true';

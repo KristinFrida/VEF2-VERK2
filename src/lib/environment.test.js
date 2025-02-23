@@ -40,11 +40,15 @@ describe('environment', () => {
     };
     const result = environment(env, logger);
     expect(result).toBeNull();
-    // Hér er athugað að DATABASE_URL sé ógilt (tómt strengur)
+    /**
+     * Hér er athugað að DATABASE_URL sé ógilt (strengur sem er ekki tómur)
+     */
     expect(logger.error).toHaveBeenCalledWith(
       'DATABASE_URL must be defined as a string',
     );
-    // Hér er athugað að PORT sé ógilt (ekki tala)
+    /**
+     * Hér er athugað að PORT sé ógilt (strengur sem er ekki tómur)
+     */
     expect(logger.error).toHaveBeenCalledWith(
       'PORT must be defined as a number',
       'abc',
@@ -89,7 +93,6 @@ describe('environment', () => {
     const result1 = environment(env, logger);
     const result2 = environment(env, logger);
 
-    // Gáum að sama hlutur sé sóttur úr "cache"
     expect(result1).toStrictEqual(result2);
   });
 });

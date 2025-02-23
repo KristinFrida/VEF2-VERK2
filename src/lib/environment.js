@@ -1,4 +1,3 @@
-/** Default port if none provided. */
 const DEFAULT_PORT = 3000;
 
 /**
@@ -17,8 +16,6 @@ let parsedEnv = null;
  * @returns {Environment | null}
  */
 export function environment(env, logger) {
-  // If we've already parsed the environment, return the cached value
-  // i.e. this is singleton and can be called multiple times in different files
   if (parsedEnv) {
     return parsedEnv;
   }
@@ -31,6 +28,11 @@ export function environment(env, logger) {
     logger.error('DATABASE_URL must be defined as a string');
     error = true;
   }
+  
+  /**
+   * The port to listen on.
+   * @type {number}
+   */
 
   let usedPort;
   const parsedPort = Number.parseInt(port ?? '', 10);
@@ -48,9 +50,10 @@ export function environment(env, logger) {
   if (error) {
     return null;
   }
-
-  // We know these are defined because we checked above
-  /** @type {any} */
+  /**
+   * The connection string for the database.
+   * @type {string}
+   */
   const connectionString = envConnectionString;
 
   parsedEnv = {

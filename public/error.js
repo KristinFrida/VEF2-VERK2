@@ -1,13 +1,13 @@
-// Breytan til að greina hvort notandinn hafi reynt að senda formið
 let submitted = false;
-
-// Fall sem athugar gildin í reitunum og skilar lista af villum
+/**
+ * Validate the form
+ * @returns {Array<string>}
+ */
 const validateForm = () => {
   const errors = [];
   const errorList = document.getElementById('error-list');
   errorList.innerHTML = '';
 
-  // Athuga spurningareitinn
   const questionField = document.getElementById('text');
   const questionValue = questionField.value.trim();
   const questionError = document.getElementById('text-error');
@@ -19,9 +19,9 @@ const validateForm = () => {
     questionError.classList.add('hidden');
     questionField.classList.remove('input-error');
   }
-  
-
-  // Athuga svarmöguleika
+  /**
+   * Validate the answers
+   */
   for (let i = 1; i <= 4; i++) {
     const answerField = document.getElementById('option' + i);
     const answerValue = answerField.value.trim();
@@ -35,17 +35,20 @@ const validateForm = () => {
       answerField.classList.remove('input-error');
     }
   }
-
-  // Athuga hvort rétt svar hafi verið valið
+  /**
+   * Validate the correct answer
+   */
   const correctAnswerChecked = document.querySelector('input[name="rett_svar"]:checked');
   if (!correctAnswerChecked) {
-    errors.push("Þú verður að velja rétt svar.");
+    errors.push('Þú verður að velja rétt svar.');
   }
 
   return errors;
 };
 
-// Viðburðarhandler fyrir submit á forminu
+/**
+ * Submit the form
+ */
 document.getElementById('question-form').addEventListener('submit', function(event) {
   submitted = true;
   const errors = validateForm();
@@ -61,8 +64,14 @@ document.getElementById('question-form').addEventListener('submit', function(eve
     });
   }
 });
+/**
+ * Add live validation
+ * @param {*} fieldId 
+ * @param {*} errorId 
+ * @param {*} min 
+ * @param {*} max 
+ */
 
-// Fall til að bæta við rauntímaviltun fyrir hvern reit
 const addLiveValidation = (fieldId, errorId, min, max) => {
   const field = document.getElementById(fieldId);
   const errorMsg = document.getElementById(errorId);
@@ -84,6 +93,9 @@ for (let i = 1; i <= 4; i++) {
   addLiveValidation('option' + i, 'option' + i + '-error', 10, 300);
 }
 
+/**
+ * Add live validation for correct answer
+ */
 document.getElementById('question-form').addEventListener('input', function() {
   if (!submitted) return;
   const errors = validateForm();
