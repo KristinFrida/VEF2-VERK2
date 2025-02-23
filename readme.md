@@ -1,5 +1,12 @@
 # Vefforritun 2, 2025, verkefni 2: Express, postgres og hýsing
 
+```bash
+npm install
+npm run setup # setur upp gagnagrunn og setur inn gögn
+npm run test # keyrir lint og test
+npm run dev # keyrir dev útgáfu af verkefni
+npm start # keyrir production útgáfu af verkefni
+```
 ## Markmið
 
 - Setja upp express vef með routes, templateum og formum með staðfestingu
