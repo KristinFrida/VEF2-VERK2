@@ -75,7 +75,9 @@ router.post('/form', async (req, res) => {
   });
   const uniqueAnswers = new Set(answers);
   if (uniqueAnswers.size < answers.length) {
-    errors.push('Tvö eða fleiri svarmöguleikar eru eins. Vinsamlegast notaðu mismunandi svarmöguleika.');
+    errors.push(
+      'Vinsamlegast notaðu mismunandi svarmöguleika.'
+    );
   }
   if (!rett_svar || !['1', '2', '3', '4'].includes(rett_svar)) {
     errors.push('Þú verður að velja rétt svar.');
@@ -116,15 +118,15 @@ router.post('/form', async (req, res) => {
   }
   const categoryId = catIdResult.rows[0].id;
   const spurningResult = await db.query(
-    `INSERT INTO spurningar (spurning, category_id) VALUES ($1, $2) RETURNING id`,
+    'INSERT INTO spurningar (spurning, category_id) VALUES ($1, $2) RETURNING id',
     [text, categoryId]
   );
   const spurningId = spurningResult.rows[0].id;
   for (let i = 0; i < answers.length; i++) {
     const svarText = answers[i];
-    const isCorrect = (String(i + 1) === rett_svar);
+    const isCorrect = String(i + 1) === rett_svar;
     await db.query(
-      `INSERT INTO svor (svor_text, spurning_id, correct) VALUES ($1, $2, $3)`,
+      'INSERT INTO svor (svor_text, spurning_id, correct) VALUES ($1, $2, $3)',
       [svarText, spurningId, isCorrect]
     );
   }
