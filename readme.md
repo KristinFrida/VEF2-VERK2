@@ -8,6 +8,7 @@ npm run test # keyrir lint og test
 npm run dev # keyrir dev útgáfu af verkefni
 npm start # keyrir production útgáfu af verkefni
 ```
+ATH þurfti að gera skjalið public fyrir Render, netlify var ekki að virka
 ## Markmið
 
 - Setja upp express vef með routes, templateum og formum með staðfestingu
